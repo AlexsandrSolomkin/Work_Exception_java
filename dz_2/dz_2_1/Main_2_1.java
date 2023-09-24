@@ -33,7 +33,7 @@ public class Main_2_1 {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print(
-            "Введите данные в формате типа float, примеры: 0,0; 2,05; 4,0\n>>"
+            "Введите данные в формате типа float, примеры: 0,0; 2,05; 4,0\n>> "
         );
 
         data_user = scanner.nextFloat();
