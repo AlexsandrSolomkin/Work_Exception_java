@@ -1,6 +1,5 @@
 package dz_2.dz_2_4;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main_2_4 {
@@ -17,8 +16,15 @@ public class Main_2_4 {
             try {
                 String text = null;
                 text = add_data_u_st();
-                System.out.println(text);
-                flag_work = false;
+                /**
+                 * Проверка является ли строка пустой
+                 */
+                if(text.isEmpty()){
+                    throw new Exception("Пустые строки вводить нельзя!!!");
+                } else {
+                    System.out.println(text);
+                    flag_work = false;
+                }
             } catch (Exception e) {
                 System.out.println("Exception: " + e);
             }
