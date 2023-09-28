@@ -6,11 +6,18 @@ public class Main_3 {
     public static void main(String[] args) {
         startWorking();
     }
-
+    /**
+     * Метод, который запускает работу программы
+     */
     private static void startWorking(){
         boolean flagWorks = true;
-
+        /**
+         * Цикл, который выполняется до тех пор, пока не получит корректные данные для работы
+         */
         while (flagWorks) {
+            /**
+             * Отвечает за проверку корректности данных пользователем
+             */
             try {
                 Scanner scanner = new Scanner(System.in);
 
