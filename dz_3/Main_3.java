@@ -1,7 +1,10 @@
 package dz_3;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.Date;
 
 public class Main_3 {
     public static void main(String[] args) {
@@ -41,6 +44,8 @@ public class Main_3 {
                     throw new Exception("Ошибка в фамилии, обнаружено число!");
                 } else if (checkString(data_sp[2])){
                     throw new Exception("Ошибка в отчестве, обнаружено число!");
+                } else if (() && () && () && (checkIfDateIsValid(data_sp[3]))){
+                    throw new Exception("Ваши данные о дате рождения указаны с ошибкой!");
                 } else if (data_sp.length == 6){
                     flagWorks = false;
                 }
@@ -69,5 +74,22 @@ public class Main_3 {
             }
         }
         return hasDigits;
+    }
+    
+    /**
+     * Проверка на корректность введенной даты, существует ли она
+     * @param date
+     * @return
+     */
+    private static boolean checkIfDateIsValid(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        boolean dateOK = false;
+        format.setLenient(false);
+        try {
+            format.parse(date);
+        } catch (ParseException e) {
+            dateOK = true;
+        }
+        return dateOK;
     }
 }
