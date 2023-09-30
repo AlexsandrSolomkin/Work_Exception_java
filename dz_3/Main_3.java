@@ -52,6 +52,8 @@ public class Main_3 {
                     throw new Exception("Ваши данные о дате рождения указаны с ошибкой!");
                 } else if (checkStringLong(data_sp[4])) {
                     throw new Exception("Такого номера не существует!");
+                } else if (contains(data_sp[5])) {
+                    throw new Exception("Такого пола не существует!");
                 } else if (data_sp.length == 6) {
                     flagWorks = false;
                 }
@@ -91,6 +93,7 @@ public class Main_3 {
      * 
      * @param st_long
      * @return
+     *         false - если проверка пройдена, true - если проверка была провалена
      */
     private static boolean checkStringLong(String st_long) {
         boolean res = false;
@@ -105,9 +108,11 @@ public class Main_3 {
 
     /**
      * Проверка на корректность введенной даты, существует ли она
+     * и возврощает результат проверки в формате boolean
      * 
      * @param date
      * @return
+     *         false - если проверка пройдена, true - если проверка была провалена
      */
     private static boolean checkIfDateIsValid(String date) {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
@@ -128,5 +133,25 @@ public class Main_3 {
         }
 
         return dateOK;
+    }
+
+    /**
+     * Проверка на корректность введенных данных, существует ли в enum такие
+     * данные и возврощает результат проверки в формате boolean
+     * 
+     * @param test
+     * @return
+     *         false - если проверка пройдена, true - если проверка была провалена
+     */
+    private static boolean contains(String test) {
+        boolean dataOK = false;
+
+        for (Gender c : Gender.values()) {
+            if (c.name().equals(test)) {
+                return dataOK;
+            }
+        }
+        dataOK = true;
+        return dataOK;
     }
 }
