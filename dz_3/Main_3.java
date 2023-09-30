@@ -2,9 +2,7 @@ package dz_3;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.Date;
 
 public class Main_3 {
     public static void main(String[] args) {
