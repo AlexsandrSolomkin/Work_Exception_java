@@ -1,7 +1,18 @@
 package dz_3;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main_3 {
@@ -53,12 +64,11 @@ public class Main_3 {
                 } else if (contains(data_sp[5])) {
                     throw new Exception("Такого пола не существует!");
                 } else if (data_sp.length == 6) {
+                    String path = "G:\\________Study_________\\Exception_java\\Work_Exception_java\\dz_3\\AllFilesDataPerson\\" + data_sp[0] + ".txt";
+                    createOrAddNewDataFile(path, data_sp);
+
                     flagWorks = false;
                 }
-
-                // DataPerson dataPerson = new DataPerson((String) data_sp[1], (String)
-                // data_sp[0], (String) data_sp[2], (LocalDate) data_sp[3], (int) data_sp[4],
-                // (Gender) data_sp[5]);
 
             } catch (Exception e) {
                 System.out.println("Exception: " + e);
@@ -151,5 +161,28 @@ public class Main_3 {
         }
         dataOK = true;
         return dataOK;
+    }
+
+    /**
+     * Метод, который создает файл, используя переданный путь для его расположения в папке и заносит в него данные из массива
+     * @param pathFile
+     * @param dataArray
+     */
+    private static void createOrAddNewDataFile(String pathFile, String[] dataArray){
+        File file = new File(pathFile);
+        try {
+            PrintWriter pw = new PrintWriter(file);
+
+            for (String data : dataArray) {
+                pw.print("<" + data + ">");
+            }
+
+            pw.print("\n");
+
+            pw.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException: " + e.getMessage());
+        }
     }
 }
