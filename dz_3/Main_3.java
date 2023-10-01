@@ -2,17 +2,12 @@ package dz_3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main_3 {
@@ -66,6 +61,7 @@ public class Main_3 {
                 } else if (data_sp.length == 6) {
                     String path = "dz_3\\AllFilesDataPerson\\" + data_sp[0] + ".txt";
                     createOrAddNewDataFile(path, data_sp);
+                    printDataFile(path);
 
                     flagWorks = false;
                 }
@@ -164,25 +160,65 @@ public class Main_3 {
     }
 
     /**
-     * Метод, который создает файл, используя переданный путь для его расположения в папке и заносит в него данные из массива
+     * Метод, который создает файл, используя переданный путь для его
+     * расположения в папке и заносит в него данные из массива
      * @param pathFile
      * @param dataArray
      */
     private static void createOrAddNewDataFile(String pathFile, String[] dataArray){
         File file = new File(pathFile);
         try {
-            PrintWriter pw = new PrintWriter(file);
+            if(!file.exists()){
+                //Срабатывает, если файл не существует
+                PrintWriter pw = new PrintWriter(file);
 
-            for (String data : dataArray) {
-                pw.print("<" + data + ">");
+                for (String data : dataArray) {
+                    pw.print("<" + data + ">");
+                }
+
+                pw.print("\n");
+
+                pw.close();
+            } else {
+                //Срабатывает, если файл существует
+                try {
+                    FileWriter writer = new FileWriter(pathFile, true);
+
+                    for (String data : dataArray) {
+                        writer.write("<" + data + ">");
+                    }
+
+                    writer.write("\n");
+
+                    writer.close();
+                } catch (IOException e) {
+                    System.out.println("IOException: " + e.getMessage());
+                }
+                
             }
-
-            pw.print("\n");
-
-            pw.close();
 
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Метод, которые считывает данные посимвольно из файла
+     * @param pathFile
+     */
+    private static void printDataFile(String pathFile){
+
+        try(FileReader reader = new FileReader(pathFile)){
+           // читаем посимвольно
+            int c;
+
+            System.out.println("\nДанные из файла: ");
+            while((c=reader.read())!=-1){
+                System.out.print((char)c);
+            }
+
+        } catch(IOException ex){
+            System.out.println("IOException" + ex.getMessage());
         }
     }
 }
