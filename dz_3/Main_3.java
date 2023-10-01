@@ -64,7 +64,7 @@ public class Main_3 {
                 } else if (contains(data_sp[5])) {
                     throw new Exception("Такого пола не существует!");
                 } else if (data_sp.length == 6) {
-                    String path = "G:\\________Study_________\\Exception_java\\Work_Exception_java\\dz_3\\AllFilesDataPerson\\" + data_sp[0] + ".txt";
+                    String path = "dz_3\\AllFilesDataPerson\\" + data_sp[0] + ".txt";
                     createOrAddNewDataFile(path, data_sp);
 
                     flagWorks = false;
